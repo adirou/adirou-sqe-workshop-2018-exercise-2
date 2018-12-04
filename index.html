@@ -11,12 +11,25 @@
 
             .textAreaWrapper {
                 width: 100%;
-                height: 80vh;
+                height: 60vh;
+            }
+            .textAreaWrapper2 {
+                width: 100%;
+                height: 30vh;
             }
 
             textarea {
                 width: 80%;
                 height: 95%;
+            }
+            .red{
+                background-color: red;
+            }
+            .green{
+                background-color: green;
+            }
+            td{
+                vertical-align: top;
             }
         </style>
     </head>
@@ -39,10 +52,14 @@
                     <div class="textAreaWrapper">
                         <textarea id="codePlaceholder" title="Enter code here"></textarea>
                     </div>
+                    <div class="textAreaWrapper2">
+                        
+                        <textarea id="inputToFunc" title="Enter Input here"></textarea>
+                    </div>
                 </td>
                 <td>
-                    <div class="textAreaWrapper">
-                        <textarea id="parsedCode" title="Parse code"></textarea>
+                    <div id="parsedCode">
+                       
                     </div>
                 </td>
             </tr>
