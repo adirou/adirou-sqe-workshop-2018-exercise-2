@@ -22,9 +22,12 @@
     "license": "ISC",
     "dependencies": {
         "esprima": "^4.0.0",
+        "eval": "^0.1.2",
         "eval-expression": "^1.0.0",
         "jquery": "^3.3.1",
-        "split-string": "^6.0.0"
+        "node-eval": "^2.0.0",
+        "split-string": "^6.0.0",
+        "static-eval": "^2.0.0"
     },
     "devDependencies": {
         "cross-env": "^5.2.0",
