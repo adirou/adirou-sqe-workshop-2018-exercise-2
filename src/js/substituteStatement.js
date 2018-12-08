@@ -16,11 +16,25 @@ const substitutionFunction = (parsedAst,symbolValue,input)=>
 const substitutionVariable = (parsedAst,symbolValue)=>
     ({ast:null,symbolValue:varDeclarToSymbol(parsedAst,symbolValue)});
 
-const substitutionExpression = (parsedAst,symbolValue)=>{
+const substitutionExpression = (parsedAst,symbolValue,input)=>{
     if(parsedAst.expression.type!=='AssignmentExpression')
         return {ast:null,symbolValue};
     else 
-        return {ast:null,symbolValue:varDeclarToSymbol(parsedAst.expression,symbolValue)};
+    {
+        let newSub =varDeclarToSymbol(parsedAst.expression,symbolValue);
+        if (input[parsedAst.expression.left.name]){
+            let expr;
+            try{
+                expr = eval(toString(newSub[parsedAst.expression.left.name]));}
+            catch (e){
+                expr = toString(newSub[parsedAst.expression.left.name]);
+            }
+            return {ast: {type: 'assign', left: parsedAst.expression.left.name, right: expr},
+                symbolValue: newSub };
+        }
+        else 
+            return {ast:null, symbolValue: newSub};
+    }
 };
 const substitutionIf = (parsedAst,symbolValue,input)=>
     ({ast:{type:'ifElse',

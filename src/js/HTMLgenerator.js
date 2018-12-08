@@ -24,6 +24,9 @@ const generateBlock = (blockSt,indent) => {
 const generateReturn = (returnSt,indent) => {
     return `${indent}return ${returnSt.arg.expression};`;
 };
+const generateAssign = (assignSt,indent) => {
+    return `${indent}${assignSt.left} = ${assignSt.right};`;
+};
 
-const functionsGeneration ={block:generateBlock,ifElse:generateIfString,while:generateWhileString,return:generateReturn};
+const functionsGeneration ={assign:generateAssign,block:generateBlock,ifElse:generateIfString,while:generateWhileString,return:generateReturn};
 

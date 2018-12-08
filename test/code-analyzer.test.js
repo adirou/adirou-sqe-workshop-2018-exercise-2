@@ -68,6 +68,19 @@ describe('The javascript parser', () => {
         assert.equal(html,'<pre><code>function f(x){</br>  while((1 == 1)){</br>    return [3 , 1];</br>  }</br>}</pre></code>');
     });
 
+    it('function with param return in body', () => {
+        let html = mainParser('let a = 1; function f(x){let b = [3,a]; a++; while(a==a) {return b;}}','1');
+        assert.equal(html,'<pre><code>function f(x){</br>  while((1 == 1)){</br>    return [3 , 1];</br>  }</br>}</pre></code>');
+    });
+
+    it('function with param return in body', () => {
+        let html = mainParser('function f(x){x = 2;}','1');
+        assert.equal(html,'<pre><code>function f(x){</br>  x = 2;</br>}</pre></code>');
+    });
+    it('function with param return in body', () => {
+        let html = mainParser('function f(x){x = x+1;}','1');
+        assert.equal(html,'<pre><code>function f(x){</br>  x = (x + 1);</br>}</pre></code>');
+    });
 
     it('function with param return in body minus', () => {
         let html = mainParser('let a = 1; function f(x){let b = [3,a]; while(-a) {return b;}}','1');
