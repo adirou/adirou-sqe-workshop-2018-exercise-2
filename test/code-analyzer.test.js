@@ -50,27 +50,27 @@ describe('The javascript parser', () => {
     it('function with param return in body', () => {
         let html = mainParser('function f(x){ while(x) {return x;}}','1');
 
-        assert.equal(html,'<pre><code>function f(x){</br>  while(x){</br>    return x;</br>  }</br>}</pre></code>');
+        assert.equal(html,'<pre><code>function f(x){</br>  <span class="green">while(x)</span>{</br>    return x;</br>  }</br>}</pre></code>');
     });
 
     it('function with param return in body', () => {
         let html = mainParser('let a = 1;function f(x){ while(x) {return a;}}','1');
-        assert.equal(html,'<pre><code>function f(x){</br>  while(x){</br>    return 1;</br>  }</br>}</pre></code>');
+        assert.equal(html,'<pre><code>function f(x){</br>  <span class="green">while(x)</span>{</br>    return 1;</br>  }</br>}</pre></code>');
     });
 
     it('function with param return in body', () => {
         let html = mainParser('let a = 1; function f(x){a=3; while(x) {return a;}}','[20]');
-        assert.equal(html,'<pre><code>function f(x){</br>  while(x){</br>    return 3;</br>  }</br>}</pre></code>');
+        assert.equal(html,'<pre><code>function f(x){</br>  <span class="green">while(x)</span>{</br>    return 3;</br>  }</br>}</pre></code>');
     });
 
     it('function with param return in body', () => {
         let html = mainParser('let a = 1; function f(x){let b = [3,a]; a++; while(a==a) {return b;}}','1');
-        assert.equal(html,'<pre><code>function f(x){</br>  while((1 == 1)){</br>    return [3 , 1];</br>  }</br>}</pre></code>');
+        assert.equal(html,'<pre><code>function f(x){</br>  <span class="green">while((1 == 1))</span>{</br>    return [3 , 1];</br>  }</br>}</pre></code>');
     });
 
     it('function with param return in body', () => {
         let html = mainParser('let a = 1; function f(x){let b = [3,a]; a++; while(a==a) {return b;}}','1');
-        assert.equal(html,'<pre><code>function f(x){</br>  while((1 == 1)){</br>    return [3 , 1];</br>  }</br>}</pre></code>');
+        assert.equal(html,'<pre><code>function f(x){</br>  <span class="green">while((1 == 1))</span>{</br>    return [3 , 1];</br>  }</br>}</pre></code>');
     });
 
     it('function with param return in body', () => {
@@ -82,21 +82,20 @@ describe('The javascript parser', () => {
         assert.equal(html,'<pre><code>function f(x){</br>  x = (x + 1);</br>}</pre></code>');
     });
 
-    it('function with param return in body minus', () => {
+    it('function with param while return in body minus (1)', () => {
         let html = mainParser('let a = 1; function f(x){let b = [3,a]; while(-a) {return b;}}','1');
-        assert.equal(html,'<pre><code>function f(x){</br>  while(-1){</br>    return [3 , 1];</br>  }</br>}</pre></code>');
+        assert.equal(html,'<pre><code>function f(x){</br>  <span class="green">while(-1)</span>{</br>    return [3 , 1];</br>  }</br>}</pre></code>');
     });
 
     it('function with param return in body minus', () => {
         let html = mainParser('let a = [1]; function f(x){let b = [3,a]; while(a.length===1) {return b;}}','1');
-        assert.equal(html,'<pre><code>function f(x){</br>  while(([1].length === 1)){</br>    return [3 , [1]];</br>  }</br>}</pre></code>');
+        assert.equal(html,'<pre><code>function f(x){</br>  <span class="green">while(([1].length === 1))</span>{</br>    return [3 , [1]];</br>  }</br>}</pre></code>');
     });
 
 
-   it('function with param return in body', () => {
+   it('function with param return in body (3)', () => {
         let html = mainParser('let a = [20]; function f(x){ while(a[0]==1) {return true;}}','1');
-        console.log(html);
-        assert.equal(html,'<pre><code>function f(x){</br>  while(([20][0] == 1)){</br>    return true;</br>  }</br>}</pre></code>');
+        assert.equal(html,'<pre><code>function f(x){</br>  <span class="red">while(([20][0] == 1))</span>{</br>    return true;</br>  }</br>}</pre></code>');
     });
 
     it('function with param return in body minus', () => {

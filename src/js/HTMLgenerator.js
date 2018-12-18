@@ -14,7 +14,7 @@ const generateIfString = (ifSt,indent) => {
 
 const generateWhileString = (whileSt,indent) => {
     let body =`${HTMLgeneration(whileSt.body,indent)}`;
-    return `${indent}while(${whileSt.test.expression})${body}`;
+    return `${indent}<span class="${whileSt.test.color}">while(${whileSt.test.expression})</span>${body}`;
 };
 
 const generateBlock = (blockSt,indent) => {
